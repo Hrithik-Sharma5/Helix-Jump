@@ -15,7 +15,7 @@ public class BallJump : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            //rb.AddForce(Vector3.up * 7, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 7, ForceMode.Impulse);
         }
     }
 

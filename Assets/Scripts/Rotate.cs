@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-
+    float mouseOffset;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            float mousePos= Input.GetAxis("Mouse X");
+            mouseOffset = Input.GetAxis("Mouse X");
+            transform.Rotate(new Vector3(0, -mouseOffset*Time.deltaTime*300,0));
         }       
     }
 }
