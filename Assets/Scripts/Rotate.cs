@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
+    [SerializeField]float rotationSpeed = 300;
     float mouseOffset;
     // Update is called once per frame
     void Update()
@@ -11,7 +12,7 @@ public class Rotate : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             mouseOffset = Input.GetAxis("Mouse X");
-            transform.Rotate(new Vector3(0, -mouseOffset*Time.deltaTime*300,0));
+            transform.Rotate(new Vector3(0, -mouseOffset*Time.deltaTime*rotationSpeed,0));
         }       
     }
 }
