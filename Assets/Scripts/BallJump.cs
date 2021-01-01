@@ -10,12 +10,19 @@ public class BallJump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
+    private void Update()
+    {
+        //Debug.Log("1");
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             rb.AddForce(Vector3.up * 7, ForceMode.Impulse);
+        }
+        if (collision.gameObject.tag == "Obsticle")
+        {
+            Time.timeScale = 0;
         }
     }
 

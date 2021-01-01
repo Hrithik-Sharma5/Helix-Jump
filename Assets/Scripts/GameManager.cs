@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
         GameObject obj = CirclePool();
         obj.SetActive(true);
         obj.transform.localPosition = new Vector3(0, tempYpos, 0);
-        //obj.transform.eulerAngles = new Vector3(-90, 0, 0);
         tempYpos += distanceBetweenCircles;
     }
 
