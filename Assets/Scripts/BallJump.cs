@@ -10,10 +10,7 @@ public class BallJump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    private void Update()
-    {
-        //Debug.Log("1");
-    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")

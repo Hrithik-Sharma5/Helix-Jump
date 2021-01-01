@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     [SerializeField] GameObject[] circlePrefab;
     [SerializeField] List<GameObject> circlesInScene = new List<GameObject>();
     [SerializeField] Transform circleContainer;
@@ -13,20 +15,26 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
+        instance = this;
+        Time.timeScale = 1.5f;
         tempYpos = startYpos;
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < circlePrefab.Length; i++)
         {
-            GameObject circle = Instantiate(circlePrefab[0], Vector3.zero, circlePrefab[0].transform.rotation, circleContainer);
-            circlesInScene.Add(circle);
-            circle.SetActive(false);
+            for (int j = 0; j < 10; j++)
+            {
+                GameObject circle = Instantiate(circlePrefab[i], Vector3.zero, Quaternion.Euler(-90,Random.Range(0,360),0), circleContainer);
+                circlesInScene.Add(circle);
+                circle.SetActive(false);
+            }
+            
         }
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 12; i++)
         {
             InstantiateCircles();
         }
     }
 
-    void InstantiateCircles()
+    public void InstantiateCircles()
     {
         GameObject obj = CirclePool();
         obj.SetActive(true);
@@ -36,10 +44,15 @@ public class GameManager : MonoBehaviour
 
     GameObject CirclePool()
     {
-        foreach (GameObject item in circlesInScene)
+        numChoose:
+        int circleNum = Random.Range(0, circlesInScene.Count);
+        if (!circlesInScene[circleNum].activeSelf)
         {
-            if (!item.activeSelf) return item;
+            return circlesInScene[circleNum];
         }
-        return null;
+        else
+            goto numChoose;
+
+       // return null;
     }
 }
