@@ -9,6 +9,7 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.instance.canRotate) return;
         if (Input.GetMouseButton(0))
         {
             mouseOffset = Input.GetAxis("Mouse X");

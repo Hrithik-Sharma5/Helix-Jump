@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class DisableUnusedCircles : MonoBehaviour
 {
+    bool canCollide=true;
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SetActive(false);
-        GameManager.instance.InstantiateCircles();
-    }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    collision.gameObject.SetActive(false);
+        if (other.tag != "Ground") return;
+        if (other.gameObject.GetComponent<BoxCollider>() == null) return;
 
-    //}
+        Destroy(other.gameObject);
+
+        //other.gameObject.SetActive(false);
+        //GameManager.instance.activeCircles--;
+        GameManager.instance.InstantiateCircles() ;
+    }
+
+
 }
